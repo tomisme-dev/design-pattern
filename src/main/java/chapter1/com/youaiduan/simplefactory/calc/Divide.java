@@ -1,4 +1,4 @@
-package com.youaiduan.simplefactory.calc;
+package chapter1.com.youaiduan.simplefactory.calc;
 
 public class Divide implements ICalc {
 

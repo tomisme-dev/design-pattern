@@ -1,4 +1,4 @@
-package com.youaiduan.simplefactory;
+package chapter1.com.youaiduan.simplefactory;
 
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -24,6 +24,21 @@ public class Calc {
 				System.out.println("输入不符合规范，请重新输入：");
 				continue;
 			}
+			
+			String operator = matcher.group(2);
+			Double num1 = Double.valueOf(matcher.group(1));
+			Double num2 = Double.valueOf(matcher.group(3));
+			AbstractOperation operation = OperationFacctory.createOperate(operator);
+			operation.setNum1(num1);
+			operation.setNum2(num2);
+			try {
+				double result = operation.getResult();
+				System.out.println(result);
+			} catch (NumberException e1) {
+				e1.printStackTrace();
+				System.out.println(e1.getMessage());
+			}
+			
 			try {
 				double calc = calc(Double.valueOf(matcher.group(1)), Double.valueOf(matcher.group(3).trim()), matcher.group(2));
 				System.out.println(input + "=" + calc);
@@ -72,5 +87,6 @@ public class Calc {
 
 
 class ZeroException extends Exception {
+	private static final long serialVersionUID = -5973094133630409548L;
 	
 }
